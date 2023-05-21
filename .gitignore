@@ -124,3 +124,5 @@ fabric.properties
 /.idea/Project.iml
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
+
+.idea
