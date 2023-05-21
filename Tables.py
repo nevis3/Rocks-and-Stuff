@@ -53,8 +53,10 @@ def Tables():
     sql_locality_rock_types = """CREATE TABLE locality_rock_types(
         locality_name VARCHAR(255) PRIMARY KEY,
         rock_type_id VARCHAR(255),
+        sample_id VARCHAR(255),
         FOREIGN KEY (locality_name) REFERENCES localities(name),
-        FOREIGN KEY (rock_type_id) REFERENCES rock_types(id)
+        FOREIGN KEY (rock_type_id) REFERENCES rock_types(id),
+        FOREIGN KEY (sample_id) REFERENCES samples(sample_id)
         )"""
 
     cursor.execute(sql_locality_rock_types)
