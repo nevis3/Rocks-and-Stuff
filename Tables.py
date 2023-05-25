@@ -1,6 +1,7 @@
-#only needs to run once. creates 2 databases, dont know why
+#only needs to run once
 
 import psycopg2
+
 
 def Tables():
     conn = psycopg2.connect(
@@ -45,22 +46,25 @@ def Tables():
        rock_type VARCHAR(255) NOT NULL,
        locality_name VARCHAR(255) NOT NULL,
        coordinates VARCHAR(255),
-       date date
+       date date,
+       
+       FOREIGN KEY (rock_type) REFERENCES rock_types(id),
+       FOREIGN KEY (locality_name) REFERENCES localities(name)
     )"""
 
     cursor.execute(sql_samples)
 
     sql_locality_rock_types = """CREATE TABLE locality_rock_types(
-        locality_name VARCHAR(255) PRIMARY KEY,
-        rock_type_id VARCHAR(255),
+        locality_name VARCHAR(255) NOT NULL,
+        rock_type_id VARCHAR(255) NOT NULL,
         sample_id VARCHAR(255),
+        CONSTRAINT PK_locality_rock_type PRIMARY KEY (locality_name,rock_type_id),
+        
         FOREIGN KEY (locality_name) REFERENCES localities(name),
-        FOREIGN KEY (rock_type_id) REFERENCES rock_types(id),
-        FOREIGN KEY (sample_id) REFERENCES samples(sample_id)
+        FOREIGN KEY (rock_type_id) REFERENCES rock_types(id)
         )"""
 
     cursor.execute(sql_locality_rock_types)
-
 
     sql_samples_chemical_data = """CREATE TABLE samples_chemical_data(
         sample_id VARCHAR(255) PRIMARY KEY,
@@ -71,7 +75,6 @@ def Tables():
         )"""
 
     cursor.execute(sql_samples_chemical_data)
-
 
     # Commit your changes in the database
     conn.commit()

@@ -14,7 +14,7 @@ def add_locality(input_data):
 def fetch_data(database_info):
     # creating a cursor object
     cursor = conn.cursor()
-    sql2 = "select * from %s" %database_info
+    sql2 = f"select * from {database_info}"
     # executing query
     cursor.execute(sql2)
 
@@ -26,6 +26,9 @@ def delete_entries(input_data):
     sql = "DELETE FROM localities WHERE country = '%s'" %input_data
 
     cursor.execute(sql)
+
+
+
 
 if __name__ == '__main__':
     conn = psycopg2.connect(
@@ -43,6 +46,7 @@ if __name__ == '__main__':
     delete_entries('Germany')
 
     fetch_data("localities")
+
 
     # Commit your changes in the database
     conn.commit()
