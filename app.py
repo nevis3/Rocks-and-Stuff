@@ -12,11 +12,8 @@ conn = psycopg2.connect(
 
 cursor = conn.cursor()
 
-@app.route('/')
-def hello():
-    return 'Hello, World!'
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def add_locality(input_data):
     # creating a cursor object
     cursor = conn.cursor()
@@ -27,7 +24,7 @@ def add_locality(input_data):
 
     #print("List has been inserted to employee table successfully...")
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def fetch_data(database_info):
     # creating a cursor object
     cursor = conn.cursor()
@@ -38,7 +35,7 @@ def fetch_data(database_info):
     # fetching the result
     print(cursor.fetchall())
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def delete_entries(input_data):
     cursor = conn.cursor()
     sql = f"DELETE FROM localities WHERE country = {input_data}"
@@ -50,3 +47,15 @@ if __name__ == "__main__":
     app.run(debug=True)
     data = [('Friesland', 'Germany'), ('Grassland', 'Germany')]
     add_locality(data)
+
+    fetch_data("localities")
+
+    delete_entries('Germany')
+
+    fetch_data("localities")
+
+    # Commit your changes in the database
+    conn.commit()
+
+    # Closing the connection
+    conn.close()
