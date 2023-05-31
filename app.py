@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, url_for, render_template
 import psycopg2
 
 app = Flask(__name__)
@@ -13,8 +13,13 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 
 
-@app.route('/', methods=['GET'])
-def add_locality(input_data):
+@app.route('/')
+def home():
+    return render_template("index.html")
+
+
+
+"""def add_locality(input_data):
     # creating a cursor object
     cursor = conn.cursor()
 
@@ -40,12 +45,12 @@ def delete_entries(input_data):
     cursor = conn.cursor()
     sql = f"DELETE FROM localities WHERE country = {input_data}"
 
-    cursor.execute(sql)
+    cursor.execute(sql)"""
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-    data = [('Friesland', 'Germany'), ('Grassland', 'Germany')]
+    """data = [('Friesland', 'Germany'), ('Grassland', 'Germany')]
     add_locality(data)
 
     fetch_data("localities")
@@ -58,4 +63,4 @@ if __name__ == "__main__":
     conn.commit()
 
     # Closing the connection
-    conn.close()
+    conn.close()"""
