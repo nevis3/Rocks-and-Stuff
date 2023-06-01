@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, request
 import psycopg2
 
 app = Flask(__name__)
@@ -13,11 +13,55 @@ conn = psycopg2.connect(
 cursor = conn.cursor()
 
 
-@app.route('/')
+@app.route("/")
 def home():
     return render_template("index.html")
 
+@app.route("/home")
+def home2():
+    return render_template("index.html")
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+        user = request.form["nm"]
+        return redirect(url_for("user", usr=user))
+    else:
+        return render_template("login.html")
 
+@app.route("/localities", methods=["POST", "GET"])
+def localities():
+    if request.method == "POST":
+        user = request.form["nm"]
+        return redirect(url_for("user", usr=user))
+    else:
+        return render_template("localities.html")
+
+@app.route("/rocks", methods=["POST", "GET"])
+def rocks():
+    if request.method == "POST":
+        user = request.form["nm"]
+        return redirect(url_for("user", usr=user))
+    else:
+        return render_template("rocks.html")
+
+@app.route("/samples", methods=["POST", "GET"])
+def samples():
+    if request.method == "POST":
+        user = request.form["nm"]
+        return redirect(url_for("user", usr=user))
+    else:
+        return render_template("samples.html")
+
+@app.route("/elements", methods=["POST", "GET"])
+def elements():
+    if request.method == "POST":
+        user = request.form["nm"]
+        return redirect(url_for("user", usr=user))
+    else:
+        return render_template("elements.html")
+@app.route("/<usr>")
+def user(usr):
+    return f"<h1>{usr}</h1>"
 
 """def add_locality(input_data):
     # creating a cursor object
