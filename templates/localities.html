@@ -37,10 +37,18 @@
     </nav>
 </body>
 </head>
-<form action="#" method="get">
-	<p>Search for a locality:</p>
-	<p><input type="text" name="nm" /></p>
-	<p><input type="submit" value="submit"/></p>
+<form action="/localities" method="get">
+	<p>Search for a Locality or Country:</p>
+	<input type="text" name="locality_name" placeholder="Locality Name" />
+	<input type="text" name="country_name" placeholder="Country" />
+	<input type="submit" value="submit"/>
+</form>
+{{ response_status }}
+<form action="/localities" method="post">
+	<p>ADD a Locality:</p>
+	<input type="text" name="locality_name" placeholder="Locality Name" />
+	<input type="text" name="country_name" placeholder="Country" />
+	<input type="submit" value="submit" />
 </form>
 
 {% endblock %}

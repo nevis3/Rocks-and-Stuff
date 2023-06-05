@@ -1,5 +1,8 @@
+import flask
 from flask import Flask, redirect, url_for, render_template, request
 import psycopg2
+
+from sqlUtils import sqlUtils
 
 app = Flask(__name__)
 
@@ -14,27 +17,56 @@ cursor = conn.cursor()
 
 
 @app.route("/")
+@app.route("/home")
 def home():
     return render_template("index.html")
 
-@app.route("/home")
-def home2():
-    return render_template("index.html")
-@app.route("/login", methods=["POST", "GET"])
-def login():
-    if request.method == "POST":
-        user = request.form["nm"]
-        return redirect(url_for("user", usr=user))
-    else:
-        return render_template("login.html")
+@app.route("/localities", methods=["GET"])
+def get_localities():
+    get_status = get_localities(request.args["locality_name"], request.args["country_name"]) \
+        if request.args \
+        else None
+    return render_template("localities.html", response_status=get_status)
 
-@app.route("/localities", methods=["POST", "GET"])
-def localities():
-    if request.method == "POST":
-        user = request.form["nm"]
-        return redirect(url_for("user", usr=user))
-    else:
-        return render_template("localities.html")
+def get_localities(locality_name, country_name):
+    sql_util = sqlUtils()
+    try:
+        return sql_util.get_locality(locality_name, country_name)
+    except:
+        return 500
+
+@app.route("/localities", methods=["POST"])
+def post_localities():
+    insert_status = insert_locality(request.form["locality_name"], request.form["country_name"])
+    return render_template("localities.html", response_status=insert_status)
+
+
+def insert_locality(locality_name, country_name):
+    sql_util = sqlUtils()
+    try:
+        sql_util.insert_locality(locality_name, country_name)
+        return "succesfully added"
+    except Exception as e:
+        return str(e)
+
+
+def insert_rock_type(rock_type_id, rock_type_name, rock_type, rock_age, rock_strike, rock_dip, rock_dip_direction):
+    sql_util = sqlUtils()
+    try:
+        sql_util.insert_rock_types(rock_type_id, rock_type_name, rock_type, rock_age, rock_strike, rock_dip, rock_dip_direction)
+        return 100
+    except:
+        return 500
+
+
+def insert_locality_rock_type(locality_name, rock_type_name):
+    sql_util = sqlUtils()
+    try:
+        sql_util.insert_locality_rock_type(locality_name, rock_type_name)
+        return 200
+    except:
+        return 500
+
 
 @app.route("/rocks", methods=["POST", "GET"])
 def rocks():
@@ -44,6 +76,7 @@ def rocks():
     else:
         return render_template("rocks.html")
 
+
 @app.route("/samples", methods=["POST", "GET"])
 def samples():
     if request.method == "POST":
@@ -52,6 +85,7 @@ def samples():
     else:
         return render_template("samples.html")
 
+
 @app.route("/elements", methods=["POST", "GET"])
 def elements():
     if request.method == "POST":
@@ -59,52 +93,8 @@ def elements():
         return redirect(url_for("user", usr=user))
     else:
         return render_template("elements.html")
-@app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h1>"
-
-"""def add_locality(input_data):
-    # creating a cursor object
-    cursor = conn.cursor()
-
-    # inserting record into employee table
-    for d in input_data:
-        cursor.execute("INSERT INTO localities(name, country) VALUES (%s,%s)", d)
-
-    #print("List has been inserted to employee table successfully...")
-
-@app.route('/', methods=['GET'])
-def fetch_data(database_info):
-    # creating a cursor object
-    cursor = conn.cursor()
-    sql2 = f"SELECT * FROM {database_info}"
-    # executing query
-    cursor.execute(sql2)
-
-    # fetching the result
-    print(cursor.fetchall())
-
-@app.route('/', methods=['GET'])
-def delete_entries(input_data):
-    cursor = conn.cursor()
-    sql = f"DELETE FROM localities WHERE country = {input_data}"
-
-    cursor.execute(sql)"""
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-    """data = [('Friesland', 'Germany'), ('Grassland', 'Germany')]
-    add_locality(data)
 
-    fetch_data("localities")
-
-    delete_entries('Germany')
-
-    fetch_data("localities")
-
-    # Commit your changes in the database
-    conn.commit()
-
-    # Closing the connection
-    conn.close()"""
