@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Rocks{% endblock %}
+
+{% block content %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Rocks and stuff</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	     <span class="navbar-toggler-icon"></span>
+	 </button>
+         <div class="collapse navbar-collapse" id="navbarNav">
+             <ul class="navbar-nav">
+	         <li class="nav-item active">
+                     <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+        </li>
+		<li class="nav-item">
+		    <a class="nav-link" href="home">Home</a>
+	 	</li>
+        </li>
+		<li class="nav-item">
+		    <a class="nav-link" href="localities">Localities</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="rocks_type_localities">Locality rock types</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="samples">Samples</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="rock_types">Rock types</a>
+		</li>
+	 	<li class="nav-item">
+		    <a class="nav-link" href="login">Login</a>
+	    </ul>
+        </div>
+    </nav>
+</body>
+</head>
+<form action="/rocks_type_localities" method="get">
+	<p>Search for a rock type:</p>
+	<input type="text" name="rock_type_name" placeholder="Rock type id" />
+	<input type="submit" value="submit"/>
+</form>
+{{ response_status }}
+<form action="/rocks_type_localities" method="post">
+	<p>ADD a rock type:</p>
+	<input type="text" name="locality_name" placeholder="Locality Name" />
+	<input type="text" name="rock_type_name" placeholder="Rock type id" />
+	<input type="submit" value="submit" />
+</form>
+
+{% endblock %}
