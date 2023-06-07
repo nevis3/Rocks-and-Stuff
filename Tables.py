@@ -24,22 +24,11 @@ def Tables():
         id VARCHAR(255) PRIMARY KEY,
         name VARCHAR(255),
         type VARCHAR(255),
-        age VARCHAR(255),
-        strike FLOAT,
-        dip FLOAT,
-        dip_direction VARCHAR(255)
+        age VARCHAR(255)
         )"""
 
     cursor.execute(sql_rock_types)
 
-    sql_elements = """CREATE TABLE elements(
-        name VARCHAR(255) PRIMARY KEY,
-        symbol VARCHAR(255) NOT NULL,
-        weight FLOAT,
-        state VARCHAR(255)
-    )"""
-
-    cursor.execute(sql_elements)
 
     sql_samples = """CREATE TABLE samples(
        id VARCHAR(255) PRIMARY KEY,
@@ -57,7 +46,6 @@ def Tables():
     sql_locality_rock_types = """CREATE TABLE locality_rock_types(
         locality_name VARCHAR(255) NOT NULL,
         rock_type_id VARCHAR(255) NOT NULL,
-        sample_id VARCHAR(255),
         CONSTRAINT PK_locality_rock_type PRIMARY KEY (locality_name,rock_type_id),
         
         FOREIGN KEY (locality_name) REFERENCES localities(name),
@@ -70,7 +58,6 @@ def Tables():
         sample_id VARCHAR(255) PRIMARY KEY,
         element_name VARCHAR(255),
         weight_percentage FLOAT,
-        FOREIGN KEY (element_name) REFERENCES elements(name),
         FOREIGN KEY (sample_id) REFERENCES samples(id)
         )"""
 
