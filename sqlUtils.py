@@ -40,3 +40,11 @@ class sqlUtils:
         self.cursor.execute(f"SELECT * FROM locality_rock_types()")
         return self.cursor.fetchall()
 
+    def get_sample(self, sample_id):
+        self.cursor.execute(f"SELECT * FROM samples WHERE id = '{sample_id}'")
+        return self.cursor.fetchall()
+    
+    def insert_sample(self, sample_id, rock_type, locality, coordinates, date):
+        self.cursor.execute(f"INSERT INTO samples(id, rock_type, locality_name, coordinates, date) VALUES"
+                            f"('{sample_id}', '{rock_type}', '{locality}', '{coordinates}', '{date}')")
+        self.conn.commit()
