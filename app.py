@@ -112,15 +112,23 @@ def get_rock_type(rock_id):
     except:
         return 500
 
-@app.route("/samples", methods=["POST", "GET"])
-def samples():
-    if request.method == "POST":
-        user = request.form["nm"]
-        return redirect(url_for("user", usr=user))
-    else:
-        return render_template("samples.html")
+@app.route("/samples", methods=["GET"])
+def get_samples():
+    get_status = get_sample(request.args["id"]) \
+        if request.args \
+        else None
+    return render.template("samples.html", response_status=get_status)
 
+def get_sample(sample_id):
+    sql_util = sqlUtils()
+    try:
+        return sql_util.get_sample(sample_id)
+    except 500
 
+@app.route("/samples", methods=["POST"])
+def insert_sample():
+    insert_status = insert_sample(request.form["id"], request.form["rock_type"], request.form["locality_name"], request.form["coordinates"], request.form["date"]
+return render_template("samples.html", response_status=insert_status)
 
 if __name__ == "__main__":
     app.run(debug=True)
