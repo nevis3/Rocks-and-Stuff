@@ -8,8 +8,8 @@ def Tables():
         host="localhost",
         database="postgres",
         user="postgres",
-        port="5432",
-        password="asdf")
+        port="5433",
+        password="*")
     # Creating a cursor object using the cursor() method
     cursor = conn.cursor()
 
@@ -53,15 +53,6 @@ def Tables():
         )"""
 
     cursor.execute(sql_locality_rock_types)
-
-    sql_samples_chemical_data = """CREATE TABLE samples_chemical_data(
-        sample_id VARCHAR(255) PRIMARY KEY,
-        element_name VARCHAR(255),
-        weight_percentage FLOAT,
-        FOREIGN KEY (sample_id) REFERENCES samples(id)
-        )"""
-
-    cursor.execute(sql_samples_chemical_data)
 
     # Commit your changes in the database
     conn.commit()

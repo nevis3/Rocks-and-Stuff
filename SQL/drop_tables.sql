@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS localities, locality_rock_types, rock_types, samples CASCADE;
