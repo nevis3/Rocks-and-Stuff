@@ -8,8 +8,8 @@ def Tables():
         host="localhost",
         database="postgres",
         user="postgres",
-        port="5432",
-        password="asdf")
+        port="5433",
+        password="*")
     # Creating a cursor object using the cursor() method
     cursor = conn.cursor()
 
