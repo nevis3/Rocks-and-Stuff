@@ -1,4 +1,4 @@
-#only needs to run once
+# only needs to run once
 
 import psycopg2
 
@@ -8,8 +8,8 @@ def Tables():
         host="localhost",
         database="postgres",
         user="postgres",
-        port="5433",
-        password="*")
+        port="5432",
+        password="asdf")
     # Creating a cursor object using the cursor() method
     cursor = conn.cursor()
 
@@ -30,14 +30,13 @@ def Tables():
 
     cursor.execute(sql_rock_types)
 
-
     sql_samples = """CREATE TABLE samples(
        id VARCHAR(255) PRIMARY KEY,
        rock_type VARCHAR(255) NOT NULL,
        locality_name VARCHAR(255) NOT NULL,
        coordinates VARCHAR(255),
        date date,
-       
+
        FOREIGN KEY (rock_type) REFERENCES rock_types(id),
        FOREIGN KEY (locality_name) REFERENCES localities(name)
     )"""
@@ -48,7 +47,7 @@ def Tables():
         locality_name VARCHAR(255) NOT NULL,
         rock_type_id VARCHAR(255) NOT NULL,
         CONSTRAINT PK_locality_rock_type PRIMARY KEY (locality_name,rock_type_id),
-        
+
         FOREIGN KEY (locality_name) REFERENCES localities(name),
         FOREIGN KEY (rock_type_id) REFERENCES rock_types(id)
         )"""

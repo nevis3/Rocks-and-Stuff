@@ -8,8 +8,8 @@ def Drop():
         host="localhost",
         database="postgres",
         user="postgres",
-        port="5433",
-        password="*")
+        port="5432",
+        password="asdf")
     # Creating a cursor object using the cursor() method
     cursor = conn.cursor()
 

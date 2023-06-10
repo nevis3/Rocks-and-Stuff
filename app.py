@@ -1,3 +1,4 @@
+
 import flask
 from flask import Flask, redirect, url_for, render_template, request
 import psycopg2
@@ -24,7 +25,7 @@ def home():
 
 @app.route("/localities", methods=["GET"])
 def get_localities():
-    get_status = get_localities(request.args["locality_name"], request.args["country_name"]) \
+    get_status = get_locality(request.args["locality_name"], request.args["country_name"]) \
         if request.args \
         else None
     return render_template("localities.html", response_status=get_status)
@@ -36,7 +37,7 @@ def post_localities():
     return render_template("localities.html", response_status=insert_status)
 
 
-def get_localities(locality_name, country_name):
+def get_locality(locality_name, country_name):
     sql_util = sqlUtils()
     try:
         return sql_util.get_locality(locality_name, country_name)
@@ -51,12 +52,6 @@ def insert_locality(locality_name, country_name):
         return "succesfully added"
     except Exception as e:
         return str(e)
-
-
-"""@app.route("/rocks_type_localities", methods=["POST"])
-def post_rock_type_localities():
-    insert_status = insert_locality_rock_type(request.form["locality_name"], request.form["rock_id"])
-    return render_template("rock_type_localities.html", response_status=insert_status)"""
 
 
 @app.route("/rocks_type_localities", methods=["GET"])
