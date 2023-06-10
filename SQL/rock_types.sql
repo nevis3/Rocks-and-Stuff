@@ -1,9 +1,9 @@
 INSERT INTO rock_types (ID, Name, Locality_name, Type, Age) VALUES
-        ('A', 'Gneiss', 'Metamorphic', 'South Dakota', '2.5 GA'),
-        ('B', 'Basalt', 'Sedimentary', 'British Isles', '500 MA'),
-        ('C', 'Dacite', 'Igneous', 'Southwest USA', '1 GA'),
-        ('D', 'Dunite', 'Sedimentary', 'Upper Peninsula', '2.4 GA'),
-        ('E', 'Kimberlite', 'Metamorphic', 'Andes Mountains','1.7 GA'),
-        ('F', 'Monzonite', 'Sedimentary', 'Australia','700 MA'),
-        ('G', 'Pegmatite', 'Igneous', 'Amazon Rainforest', '1.2 GA'),
-        ('H', 'Obsidian', 'Metamorphic', 'Southern Africa', '2 GA');
+        ('A', 'Gneiss', 'South Dakota', 'Metamorphic', '2.5 GA'),
+        ('B', 'Basalt', 'British Isles', 'Sedimentary', '500 MA'),
+        ('C', 'Dacite', 'Southwest USA', 'Igneous', '1 GA'),
+        ('D', 'Dunite', 'Upper Peninsula', 'Sedimentary', '2.4 GA'),
+        ('E', 'Kimberlite',  'Andes Mountains', 'Metamorphic', '1.7 GA'),
+        ('F', 'Monzonite', 'Australia', 'Sedimentary', '700 MA'),
+        ('G', 'Pegmatite', 'Amazon Rainforest', 'Igneous', '1.2 GA'),
+        ('H', 'Obsidian', 'Southern Africa', 'Metamorphic', '2 GA');
