@@ -23,6 +23,7 @@ def Tables():
     sql_rock_types = """CREATE TABLE rock_types(
         id VARCHAR(255) PRIMARY KEY,
         name VARCHAR(255),
+        locality_name VARCHAR(255),
         type VARCHAR(255),
         age VARCHAR(255)
         )"""
@@ -53,15 +54,6 @@ def Tables():
         )"""
 
     cursor.execute(sql_locality_rock_types)
-
-    sql_samples_chemical_data = """CREATE TABLE samples_chemical_data(
-        sample_id VARCHAR(255) PRIMARY KEY,
-        element_name VARCHAR(255),
-        weight_percentage FLOAT,
-        FOREIGN KEY (sample_id) REFERENCES samples(id)
-        )"""
-
-    cursor.execute(sql_samples_chemical_data)
 
     # Commit your changes in the database
     conn.commit()

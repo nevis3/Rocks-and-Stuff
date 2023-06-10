@@ -21,14 +21,14 @@
 		<li class="nav-item">
 		    <a class="nav-link" href="localities">Localities</a>
 		</li>
+	 	<li class="nav-item">
+		    <a class="nav-link" href="rock_types">Rock types</a>
+		</li>
 		<li class="nav-item">
 		    <a class="nav-link" href="rocks_type_localities">Locality rock types</a>
 		</li>
 		<li class="nav-item">
 		    <a class="nav-link" href="samples">Samples</a>
-		</li>
-        <li class="nav-item">
-		    <a class="nav-link" href="rock_types">Rock types</a>
 		</li>
 	    </ul>
         </div>
@@ -37,7 +37,7 @@
 </head>
 <form action="/rock_types" method="get">
 	<p>Search for a Rock:</p>
-	<input type="text" name="rock_name" placeholder="Rock Name" />
+	<input type="text" name="rock_id" placeholder="Rock Id" />
 	<input type="submit" value="submit"/>
 </form>
 {{ response_status }}
@@ -45,6 +45,7 @@
 	<p>ADD a Rock:</p>
 	<input type="text" name="rock_id" placeholder="Id" />
 	<input type="text" name="rock_name" placeholder="Name" />
+	<input type="text" name="locality_name" placeholder="Locality" />
     <input type="text" name="rock_type" placeholder="Type" />
     <input type="text" name="age_number" placeholder="Age" />
 	<input type="submit" value="submit" />

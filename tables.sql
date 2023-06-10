@@ -4,6 +4,7 @@ Create TABLE IF NOT EXISTS localities(
 
 CREATE TABLE IF NOT EXISTS rock_types(
         id VARCHAR(255) PRIMARY KEY,
+        locality_name VARCHAR(255),
         name VARCHAR(255),
         type VARCHAR(255),
         age VARCHAR(255));
@@ -25,9 +26,3 @@ CREATE TABLE IF NOT EXISTS locality_rock_types(
 
         FOREIGN KEY (locality_name) REFERENCES localities(name),
         FOREIGN KEY (rock_type_id) REFERENCES rock_types(id));
-
-CREATE TABLE IF NOT EXISTS samples_chemical_data(
-        sample_id VARCHAR(255) PRIMARY KEY,
-        element_name VARCHAR(255),
-        weight_percentage FLOAT,
-        FOREIGN KEY (sample_id) REFERENCES samples(id));

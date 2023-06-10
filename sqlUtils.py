@@ -15,9 +15,9 @@ class sqlUtils:
         self.cursor.execute(f"INSERT INTO localities(name, country) VALUES ('{locality_name}','{country_name}')")
         self.conn.commit()
 
-    def insert_rock_types(self, rock_type_id, rock_type_name, rock_type, rock_age):
-        self.cursor.execute(f"INSERT INTO rock_types(id, name, type, age) VALUES"
-                            f"('{rock_type_id}', '{rock_type_name}', '{rock_type}', '{rock_age}')")
+    def insert_rock_types(self, rock_type_id, rock_type_name, locality_name, rock_type, rock_age):
+        self.cursor.execute(f"INSERT INTO rock_types(id, name, locality_name, type, age) VALUES"
+                            f"('{rock_type_id}', '{rock_type_name}', '{locality_name}', '{rock_type}', '{rock_age}')")
         self.conn.commit()
 
     def get_locality(self, locality_name, country_name):
@@ -28,15 +28,21 @@ class sqlUtils:
             self.cursor.execute(f"SELECT * FROM localities WHERE name = '{locality_name}'")
             return self.cursor.fetchall()
 
-    def insert_locality_rock_type(self, locality_name, rock_type_name):
-        self.cursor.execute(f"INSERT INTO locality_rock_types(locality_name, rock_type_id) VALUES ('{locality_name}','{rock_type_name}')")
-        self.conn.commit()
 
-    def get_locality_rock_type(self):
-        self.cursor.execute(f"SELECT * FROM locality_rock_types()")
+    def get_locality_rock_type(self, rock_name):
+        self.cursor.execute(f"SELECT rock_types.locality_name FROM rock_types WHERE name = '{rock_name}'")
         return self.cursor.fetchall()
 
     def get_rock_type(self, rock_id):
-        self.cursor.execute(f"SELECT * FROM locality_rock_types()")
+        self.cursor.execute(f"SELECT * FROM rock_types WHERE id = '{rock_id}'")
         return self.cursor.fetchall()
 
+
+    def insert_sample(self, sample_id, rock_type, locality, coordinates, date):
+        self.cursor.execute(f"INSERT INTO samples(id, rock_type, locality_name, coordinates, date) VALUES ('{sample_id}'"
+                            f",'{rock_type}', '{locality}', '{coordinates}', '{date}')")
+        self.conn.commit()
+
+    def get_sample(self, sample_id):
+        self.cursor.execute(f"SELECT * FROM samples WHERE id = '{sample_id}'")
+        return self.cursor.fetchall()
