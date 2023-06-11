@@ -6,4 +6,4 @@ The SQL and Python_SQL are used to instantiate the databse and can be deleted th
 The static folder contains a css file, which has not been implemented yet.
 The templates folder contains the html files, which create the homepage and lets the user interact with the database. <br />
 
-The program runs from the app.py file and uses sqlUtils to post and get information to the database.
+The program runs from the app.py file and uses sqlUtils to post and get information to/from the database.
