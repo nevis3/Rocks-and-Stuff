@@ -22,7 +22,7 @@ All of these files has this module, where it has to be changed for it to work co
 
 When this is done, you can now initialise the database using the following commands in this order:
 # Python
-- python Table.py
+- python Tables.py
 - python localities.py
 - python rockTypes.py
 - python localityRockTypes.py
@@ -30,8 +30,8 @@ When this is done, you can now initialise the database using the following comma
 # SQL
 - psql < tables.sql
 - psql < localities.sql
-- psql < rockTypes.sql
-- psql < localityRockTypes.py
+- psql < rock_types.sql
+- psql < locality_rock_types.sql
 
 Either way should work, and creates the database. Now to run the app, use the following:
 - python app.py
