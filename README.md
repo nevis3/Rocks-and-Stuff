@@ -7,3 +7,36 @@ The static folder contains a css file, which has not been implemented yet.
 The templates folder contains the html files, which create the homepage and lets the user interact with the database. <br />
 
 The program runs from the app.py file and uses sqlUtils to post and get information to/from the database.
+
+## How to run the project
+Install the requirements using the following:
+pip install -r requirements.txt
+
+To initialise the database using python, first make sure to change the values for psycopg, so it can connect to the database.
+This includes using the correct port as well as the password for your database. 
+- Python_SQL
+- sqlUtils
+- app
+All have this module, where it has to be changed for it to work correctly. 
+
+When this is done, you can now initialise the database using the following commands in this order:
+# Python
+- python Table.py
+- python localities.py
+- python rockTypes.py
+- python localityRockTypes.py
+
+# SQL
+- psql < tables.sql
+- psql < localities.sql
+- psql < rockTypes.sql
+- psql < localityRockTypes.py
+
+Either way should work, and creates the database. Now to run the app, use the following:
+- python app.py
+
+Click the ip-link which will be created in the terminal, and the website is up and running. 
+Explore the different options, such as adding rocks, searching for rocks and so forth.
+
+To delete the tables from your database, use:
+- python DropAllTables.py
