@@ -22,18 +22,20 @@ All of these files has this module, where it has to be changed for it to work co
 
 When this is done, you can now initialise the database using the following commands in this order:
 # Python
+- Change to the Python_SQL folder
 - python Tables.py
 - python localities.py
 - python rockTypes.py
 - python localityRockTypes.py
 
 # SQL
+- Use the PSQL console
 - psql < tables.sql
 - psql < localities.sql
 - psql < rock_types.sql
 - psql < locality_rock_types.sql
 
-Either way should work, and creates the database. Now to run the app, use the following:
+Either way should work, and creates the database. Now to run the app, ensure you're out of the Python_SQL directory and use the following:
 - python app.py
 
 Click the ip-link which will be created in the terminal, and the website is up and running. 
