@@ -17,7 +17,8 @@ This includes using the correct port as well as the password for your database.
 - Python_SQL
 - sqlUtils
 - app
-All have this module, where it has to be changed for it to work correctly. 
+
+All of these files has this module, where it has to be changed for it to work correctly. 
 
 When this is done, you can now initialise the database using the following commands in this order:
 # Python
